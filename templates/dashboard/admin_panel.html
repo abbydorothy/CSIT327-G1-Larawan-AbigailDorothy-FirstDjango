@@ -1,2 +1,25 @@
 {% extends "base.html" %}
-{% block content %}<h2>Admin Panel</h2>{% endblock %}
+{% block title %}Admin Panel | CampusConnect{% endblock %}
+{% block content %}
+<h2 class="mb-4">Admin Panel</h2>
+<div class="card shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-striped mb-0">
+            <thead class="table-success">
+                <tr><th>Username</th><th>Name</th><th>Email</th><th>Role</th><th>Course</th></tr>
+            </thead>
+            <tbody>
+                {% for m in members %}
+                <tr>
+                    <td>{{ m.username }}</td>
+                    <td>{{ m.get_full_name|default:"-" }}</td>
+                    <td>{{ m.email|default:"-" }}</td>
+                    <td>{{ m.get_role_display }}</td>
+                    <td>{{ m.course|default:"-" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
